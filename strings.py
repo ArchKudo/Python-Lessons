@@ -1,7 +1,7 @@
 import humansize
-string = "Girish"
+string = "Arch"
 print("{0}".format(string))
-string_2 = 'Vyas' # ' ' or " " are allowed for declaring string
+string_2 = 'Kudo' # ' ' or " " are allowed for declaring string
 print("{0} {1}".format(string, string_2))
 
 suffixes = humansize.SUFFIXES
