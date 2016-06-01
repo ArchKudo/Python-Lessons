@@ -46,3 +46,19 @@ arr_dict = dict(arr_list)
 print(arr_dict)
 
 #Slicing a string
+string_4 = "This is an example text"
+print(string_4)
+print(string_4[10:-1])
+print(string_4[-5:-3])
+
+#bytes
+byte_1 = b'abcd\x65' #b in start determines type byte
+print(byte_1)
+print(type(byte_1))
+print(len(byte_1))
+byte_1 += b'xff'
+print(byte_1)
+print(len(byte_1))
+print(byte_1[0]) #accesing byte elements
+#Re-assigning doesn't work
+# byte_1[0] = 102
