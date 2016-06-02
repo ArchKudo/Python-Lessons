@@ -62,3 +62,12 @@ print(len(byte_1))
 print(byte_1[0]) #accesing byte elements
 #Re-assigning doesn't work
 # byte_1[0] = 102
+
+#cat two bytestrings
+byte_2 = b'fghi'
+byte_1 += byte_2
+print(byte_1)
+
+print(byte_1.decode().count('f')) # Convert to string to find instances of 'f'
+
+
