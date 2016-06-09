@@ -4,7 +4,7 @@ REGEX MATCHING:
 
 • ^ matches the beginning of a string.
 • $ matches the end of a string.
-• \b matches a word boundary.
+• b \matches a word boundary.
 • \d matches any numeric digit.
 • \D matches any non-numeric character.
 • x? matches an optional x character (in other words, it matches an x zero or one times).
