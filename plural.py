@@ -1,7 +1,8 @@
 import re
-#[abc]$ - Either one of a, b, c at end
-#[^abc] - (^ - Negation) Neither one of a, b, c
+# [abc]$ - Either one of a, b, c at end
+# [^abc] - (^ - Negation) Neither one of a, b, c
 
+# Using Conditionals
 def plural(noun):
 	if re.search('[sxz]$', noun):
 		return re.sub('$', 'es', noun)
@@ -14,6 +15,7 @@ def plural(noun):
 
 print(plural('fish'))
 
+# # Using functions
 def match_sxz(noun):
 	return re.search('[sxz]$', noun)
 def apply_sxz(noun):
@@ -43,4 +45,38 @@ def plural(noun):
 
 print(plural('fish'))
 
+# Using Closures
+def build_match_apply_functions(pattern, search, replace):
+	def match_rule(noun):
+		return re.search(pattern, noun)
+	def apply_rule(noun):
+		return re.sub(search, replace, noun)
+	return (match_rule, apply_rule)
 
+patterns = (
+           ('[sxz]$', '$', 'es'),
+           ('[^aeioudgkprt]h$', '$', 'es'),
+           ('qu|[^aeiou]y$', 'y$', 'ies'),
+           ('$', '$', 's'),
+          )
+
+
+rules = [build_match_apply_functions(pattern, search, replace)
+					for (pattern, search, replace) in patterns]
+
+def plural(noun):
+	for match_rule, apply_rule in rules:
+		if match_rule(noun):
+			return apply_rule(noun)
+
+print(plural('fish'))
+
+# Using Files
+
+rules = []
+with open('plural-rules', encoding='utf-8') as pattern_file:
+	for line in pattern_file:
+		pattern, search, replace = line.split(None, 3)
+		rules.append(build_match_apply_functions(pattern, search, replace))
+
+print(plural('fish'))
