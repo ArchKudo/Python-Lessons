@@ -80,3 +80,17 @@ with open('plural-rules', encoding='utf-8') as pattern_file:
 		rules.append(build_match_apply_functions(pattern, search, replace))
 
 print(plural('fish'))
+
+def rules(rule_filename):
+	with open(rule_filename, encoding='utf-8') as pattern_file:
+		for line in pattern_file:
+			pattern, search, replace = line.split(None, 3)
+			yield build_match_apply_functions(pattern, search, replace)
+
+def plural(noun, rule_filename='plural-rules'):
+	for match_rule, apply_rule in rules(rule_filename):
+		if match_rule(noun):
+			return apply_rule(noun)
+	raise ValueError('No matching rule for {0}'.format(noun))
+
+print(plural('fish'))
